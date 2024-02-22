@@ -1,7 +1,8 @@
 import Buttion from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import "./sign-in.styles.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { userContext } from "../../contexts/user.contex";
 import {
   auth,
   signWithGooglePopup,
@@ -13,7 +14,9 @@ const defaultFormFields = {
   email: "",
   password: "",
 };
+
 const SignInForm = () => {
+  const { setCurrentUser } = useContext(userContext);
   const [formFields, setFormField] = useState(defaultFormFields);
   const { email, password } = formFields;
   const clearForm = () => {
@@ -27,8 +30,8 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const userAuth = await SignAuthByEmailAndPassowrd(email, password);
-      console.log(userAuth);
+      const { user } = await SignAuthByEmailAndPassowrd(email, password);
+      setCurrentUser(user);
       clearForm();
     } catch (except) {
       if (except.code === "auth/wrong-password") {
@@ -37,6 +40,8 @@ const SignInForm = () => {
         alert("user not found");
       } else if (except.code === "auth/weak-password") {
         alert("Password should be at least 6 characters");
+      } else if (except.code === "auth/invalid-email") {
+        alert("invalid email address");
       } else {
         console.log(except);
       }
@@ -44,9 +49,9 @@ const SignInForm = () => {
   };
   const logGoogleUser = async () => {
     const response = await signWithGooglePopup();
+    setCurrentUser(response.user);
     // console.log(response);
-    const userDocref = createUserDocumentFromAuth(response.user);
-    console.log(userDocref);
+    const userDocref = await createUserDocumentFromAuth(response.user);
   };
   return (
     <div className="sign-in-container">
