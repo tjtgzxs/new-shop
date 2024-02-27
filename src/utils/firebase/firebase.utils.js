@@ -9,6 +9,8 @@ import {
   signInWithRedirect,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -69,3 +71,7 @@ export const SignAuthByEmailAndPassowrd = async (email, password) => {
   }
   return await signInWithEmailAndPassword(auth, email, password);
 };
+export const SignOutAuth = async () => signOut(auth);
+
+export const onAuthChangeListener = (callback) =>
+  onAuthStateChanged(auth, callback);

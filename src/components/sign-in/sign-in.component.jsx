@@ -2,7 +2,6 @@ import Buttion from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import "./sign-in.styles.scss";
 import { useState, useContext } from "react";
-import { userContext } from "../../contexts/user.contex";
 import {
   auth,
   signWithGooglePopup,
@@ -16,7 +15,6 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
-  const { setCurrentUser } = useContext(userContext);
   const [formFields, setFormField] = useState(defaultFormFields);
   const { email, password } = formFields;
   const clearForm = () => {
@@ -31,7 +29,6 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       const { user } = await SignAuthByEmailAndPassowrd(email, password);
-      setCurrentUser(user);
       clearForm();
     } catch (except) {
       if (except.code === "auth/wrong-password") {
@@ -49,9 +46,8 @@ const SignInForm = () => {
   };
   const logGoogleUser = async () => {
     const response = await signWithGooglePopup();
-    setCurrentUser(response.user);
     // console.log(response);
-    const userDocref = await createUserDocumentFromAuth(response.user);
+    // const userDocref = await createUserDocumentFromAuth(response.user);
   };
   return (
     <div className="sign-in-container">
