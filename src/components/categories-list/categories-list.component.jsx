@@ -32,7 +32,7 @@ const CategoryList = () => {
   return (
     <div className="categories-container">
       {categories.map(({ title, id, imageUrl }) => {
-        return <Item category={title} id={id} imageUrl={imageUrl} />;
+        return <Item key={id} category={title} id={id} imageUrl={imageUrl} />;
       })}
     </div>
   );
