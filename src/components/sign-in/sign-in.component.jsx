@@ -1,4 +1,4 @@
-import Buttion from "../button/button.component";
+import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import "./sign-in.styles.scss";
 import { useState, useContext } from "react";
@@ -71,10 +71,10 @@ const SignInForm = () => {
           required
         />
         <div className="buttons-container">
-          <Buttion onClick={handleSubmit}>SIGN IN</Buttion>
-          <Buttion buttonType="google" onClick={logGoogleUser}>
+          <Button onClick={handleSubmit}>SIGN IN</Button>
+          <Button buttonType="google" onClick={logGoogleUser}>
             SIGN IN WITH GOOGLE
-          </Buttion>
+          </Button>
         </div>
       </form>
     </div>

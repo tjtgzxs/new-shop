@@ -21,10 +21,13 @@
     display: flex;
     flex-direction: column;
     overflow: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   button {
-    margin-top: auto;
+    margin-bottom: auto;
     font-size: 12px;
     &:hover {
       font-size: 12px;

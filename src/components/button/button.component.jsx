@@ -4,7 +4,7 @@ const BUTTON_TYPE_CLASSES = {
   inverted: "inverted",
 };
 
-const Buttion = ({ children, buttonType, ...props }) => {
+const Button = ({ children, buttonType, ...props }) => {
   return (
     <button
       className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
@@ -15,4 +15,4 @@ const Buttion = ({ children, buttonType, ...props }) => {
   );
 };
 
-export default Buttion;
+export default Button;
