@@ -1,4 +1,4 @@
-import { Outlet, Link, useActionData } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { Fragment, useContext } from "react";
 import { ReactComponent as CronLogo } from "../../assets/crown.svg";
 import "./navigation.styles.scss";

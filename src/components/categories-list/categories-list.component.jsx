@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import Item from "../category-item/category-item.component";
+import Item from "../directory-item/directory-item.component";
 import "./categories-list.style.scss";
 const CategoryList = () => {
   const categories = [
